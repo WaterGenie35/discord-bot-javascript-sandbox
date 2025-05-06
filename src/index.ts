@@ -1,10 +1,7 @@
-import { Client, Events, GatewayIntentBits } from "discord.js";
-import dotenv from "dotenv";
+import { Client, Events, GatewayIntentBits } from 'discord.js';
 
+import { config } from './config.ts';
 
-dotenv.config();
-
-const botToken = process.env.DISCORD_BOT_TOKEN;
 
 const client = new Client({
     intents: [GatewayIntentBits.Guilds]
@@ -15,4 +12,4 @@ client.once(Events.ClientReady, readyClient => {
     console.log(`Logged in as ${user.displayName} (${user.tag})`);
 });
 
-client.login(botToken);
+client.login(config.DISCORD_BOT_TOKEN);

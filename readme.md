@@ -1,10 +1,26 @@
 # Discord Bot Sandbox with JavaScript
 
-## Run
+## Usage
+
+### Run
 
 ```bash
-node .
+npm run start
 ```
+
+### Development
+
+```bash
+# Watch
+npm run dev
+
+# Test
+npm run test
+
+# Build
+npm run build
+```
+
 
 ## References
 
