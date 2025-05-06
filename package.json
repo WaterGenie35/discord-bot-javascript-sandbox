@@ -1,0 +1,24 @@
+{
+  "name": "discord-bot-javascript-sandbox",
+  "version": "1.0.0",
+  "description": "Sandbox for testing discord bot in javascript.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github-normal:WaterGenie35/discord-bot-javascript-sandbox.git"
+  },
+  "author": "WaterGenie35",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "14.19.3",
+    "dotenv": "16.5.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.26.0",
+    "eslint": "9.26.0"
+  }
+}

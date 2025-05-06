@@ -1,0 +1,6 @@
+# JavaScript/Node
+node_modules
+
+# Env
+.env
+.vscode
