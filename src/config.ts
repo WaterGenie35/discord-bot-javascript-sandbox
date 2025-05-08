@@ -3,12 +3,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
+const requiredVariables = [
+    'DISCORD_BOT_TOKEN',
+    'DISCORD_APPLICATION_ID'
+];
 
-if (!DISCORD_BOT_TOKEN) {
-    throw new Error(`Could not load discord bot token. Please make sure DISCORD_BOT_TOKEN is defined in the .env file.`);
+const missingVariables = requiredVariables.filter(variable => process.env[variable] === undefined);
+
+if (missingVariables.length > 0) {
+    throw new Error(`Could not load the following environment variables: ${missingVariables.join(", ")}. Please make sure they are defined in the .env file.`);
 }
 
-export const config = {
-    DISCORD_BOT_TOKEN
-};
+const config = requiredVariables.reduce((accum, variable) => {
+    accum[variable] = process.env[variable]!;
+    return accum;
+}, {} as {[key: string]: string});
+
+export default config;

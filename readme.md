@@ -1,14 +1,20 @@
 # Discord Bot Sandbox with JavaScript
 
-## Usage
+## 1. Demo Features
 
-### Run
+### 1.1. Basic Utilities
+
+[<img src="docs/utility_commands_example.png" />]()
+
+## 2. Usage
+
+### 2.1. Run
 
 ```bash
 npm run start
 ```
 
-### Development
+### 2.2. Development
 
 ```bash
 # Watch
@@ -19,10 +25,14 @@ npm run test
 
 # Build
 npm run build
+
+# Scripts
+# e.g. deploy-commands
+npm run script script-name
 ```
 
 
-## References
+## 3. References
 
 - [Discord Developers Documentation](https://discord.com/developers/docs/intro)
 - [Discord.js](https://discord.js.org/)
