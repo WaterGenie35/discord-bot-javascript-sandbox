@@ -1,10 +1,11 @@
 import { Client, ClientOptions, Collection } from 'discord.js';
 
-import commandsCollection from './commands-loader';
 import { Command } from './command';
+import loadCommands from './commands-loader';
+import loadEvents from './events-loader';
 
 
-export class BotClient extends Client {
+export class BotClient extends Client<true> {
     public commands: Collection<string, Command>;
 
     constructor(options: ClientOptions) {
@@ -13,6 +14,11 @@ export class BotClient extends Client {
         } else {
             super(options);
         }
-        this.commands = commandsCollection
+        this.commands = new Collection();
+    }
+
+    async init() {
+        this.commands = await loadCommands();
+        await loadEvents(this);
     }
 }

@@ -31,6 +31,13 @@ npm run build
 npm run script script-name
 ```
 
+#### 2.2.1. Scripts
+
+```bash
+# Register new commands and update existing ones
+npm run script deploy-commands
+```
+
 
 ## 3. References
 

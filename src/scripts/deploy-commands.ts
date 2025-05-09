@@ -1,13 +1,14 @@
 import { ApplicationCommand, REST, Routes } from 'discord.js';
 
 import config from '../config';
-import commandCollection from '../commands-loader';
+import loadCommands from '../commands-loader';
 
 
 const rest = new REST().setToken(config.DISCORD_BOT_TOKEN);
 
 (async () => {
     try {
+        const commandCollection = await loadCommands();
         console.log(`Refreshing ${commandCollection.size} application (/) commands.`);
         const commands = [...commandCollection.values().map(command => command.data)];
         const data = await rest.put(
