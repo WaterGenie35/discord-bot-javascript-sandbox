@@ -1,5 +1,5 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { glob } from 'glob';
 
 import { Collection } from 'discord.js';
 
@@ -11,21 +11,17 @@ import { Command } from './command';
 
 async function loadCommands(): Promise<Collection<string, Command>> {
     const commandsCollection: Collection<string, Command> = new Collection();
-    
+
     const __dirname = import.meta.dirname;
-    const foldersPath = path.join(__dirname, 'commands');
-    const commandFolders = fs.readdirSync(foldersPath);
-    for (const folder of commandFolders) {
-        const commandsPath = path.join(foldersPath, folder);
-        const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-            for (const file of commandFiles) {
-                const filePath = path.join(commandsPath, file);
-                const command = (await import(filePath)).default;
-                if ('data' in command && 'execute' in command) {
-                    commandsCollection.set(command.data.name, command);
-                } else {
-                    console.warn(`The command at ${filePath} is missing 'data' or 'execute' property.`);
-                }
+    const commandsDir = path.join(__dirname, 'commands');
+    const commandFiles = await glob('**/*.js', { cwd: commandsDir });
+    for (const commandFile of commandFiles) {
+        const commandPath = path.join(commandsDir, commandFile);
+        const command = (await import(commandPath)).default;
+        if ('data' in command && 'execute' in command) {
+            commandsCollection.set(command.data.name, command);
+        } else {
+            console.warn(`The command at ${commandPath} is missing 'data' or 'execute' property.`);
         }
     }
 

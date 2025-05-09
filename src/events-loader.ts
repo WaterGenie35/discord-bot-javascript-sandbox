@@ -1,5 +1,5 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { glob } from 'glob';
 
 import { BotClient } from './bot-client';
 
@@ -8,11 +8,11 @@ import { BotClient } from './bot-client';
 
 async function loadEvents(client: BotClient) {
     const __dirname = import.meta.dirname;
-    const eventsPath = path.join(__dirname, 'events');
-    const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
-    for (const file of eventFiles) {
-        const filePath = path.join(eventsPath, file);
-        const event = (await import(filePath)).default;
+    const eventsDir = path.join(__dirname, 'events');
+    const eventFiles = await glob('**/*.js', { cwd: eventsDir });
+    for (const eventFile of eventFiles) {
+        const eventPath = path.join(eventsDir, eventFile);
+        const event = (await import(eventPath)).default;
         if ('name' in event && 'execute' in event) {
             if (event.once) {
                 client.once(event.name, (...args) => event.execute(...args));
@@ -20,7 +20,7 @@ async function loadEvents(client: BotClient) {
                 client.on(event.name, (...args) => event.execute(...args));
             }
         } else {
-            console.warn(`The event at ${filePath} is missing 'name' or 'execute' property.`);
+            console.warn(`The event at ${eventPath} is missing 'name' or 'execute' property.`);
         }
     }
 };
