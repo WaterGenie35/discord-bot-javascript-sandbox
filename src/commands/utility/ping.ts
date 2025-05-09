@@ -6,6 +6,7 @@ command.setName('ping');
 command.setDescription("Tests if the bot is responsive.");
 
 export default {
+    cooldown: 5,
     data: command,
     async execute(interaction: CommandInteraction) {
         await interaction.reply("Pong :)");

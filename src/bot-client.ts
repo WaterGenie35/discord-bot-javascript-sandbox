@@ -5,8 +5,14 @@ import loadCommands from './commands-loader';
 import loadEvents from './events-loader';
 
 
+type CommandName = string;
+type UserId = string;
+type Timestamp = number;
+
 export class BotClient extends Client<true> {
-    public commands: Collection<string, Command>;
+    public commands: Collection<CommandName, Command>;
+    public commandCooldowns: Collection<CommandName, Collection<UserId, Timestamp>>;
+    public defaultCommandCooldown: number = 1;
 
     constructor(options: ClientOptions) {
         if (options === undefined) {
@@ -15,6 +21,7 @@ export class BotClient extends Client<true> {
             super(options);
         }
         this.commands = new Collection();
+        this.commandCooldowns = new Collection();
     }
 
     async init() {
