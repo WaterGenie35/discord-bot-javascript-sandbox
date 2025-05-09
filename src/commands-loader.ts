@@ -9,6 +9,10 @@ import { Command } from './command';
 // Refer to discord.js guide here:
 // https://discordjs.guide/creating-your-bot/command-handling.html#loading-command-files
 
+const blacklist = [
+    'reload.js'
+];
+
 async function loadCommands(): Promise<Collection<string, Command>> {
     const commandsCollection: Collection<string, Command> = new Collection();
 
@@ -16,6 +20,9 @@ async function loadCommands(): Promise<Collection<string, Command>> {
     const commandsDir = path.join(__dirname, 'commands');
     const commandFiles = await glob('**/*.js', { cwd: commandsDir });
     for (const commandFile of commandFiles) {
+        if (blacklist.includes(path.basename(commandFile))) {
+            continue;
+        }
         const commandPath = path.join(commandsDir, commandFile);
         const command = (await import(commandPath)).default;
         if ('data' in command && 'execute' in command) {

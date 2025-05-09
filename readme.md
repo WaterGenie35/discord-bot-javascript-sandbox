@@ -12,6 +12,7 @@
 
 ```bash
 npm run start
+npm run stop
 ```
 
 ### 2.2. Development
