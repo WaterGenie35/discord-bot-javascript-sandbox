@@ -53,3 +53,4 @@ npm run script deploy-commands
 
 - [Discord Developers Documentation](https://discord.com/developers/docs/intro)
 - [Discord.js](https://discord.js.org/)
+- [Drizzle](https://orm.drizzle.team/)
