@@ -29,7 +29,7 @@ npm run build
 
 # Scripts
 #   Update commands
-npm run script deploy-commands
+npm run script deploy-commands  # then refresh discord
 
 #   Update schema
 npx drizzle-kit generate

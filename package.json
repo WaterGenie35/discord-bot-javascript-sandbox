@@ -8,9 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/index.ts",
     "build": "tsup src/index.ts src/commands/**/*.ts src/events/**/*.ts src/scripts/**/*.ts",
-    "start": "pm2 start dist/index.js --watch --attach --name sandbox-bot",
-    "stop": "pm2 stop sandbox-bot",
-    "script": "func() { node dist/scripts/\"$1\".js; }; func"
+    "start": "node dist/index.js",
+    "start-pm2": "pm2 start dist/index.js --watch --attach --name sandbox-bot",
+    "stop-pm2": "pm2 stop sandbox-bot",
+    "script": "func() { node dist/scripts/\"$1\".js; }; func",
+    "clear-db": "rm drizzle/*.sql && rm -r drizzle/meta && rm drizzle/sqlite/local.db"
   },
   "repository": {
     "type": "git",
