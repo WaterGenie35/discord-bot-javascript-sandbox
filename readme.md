@@ -28,8 +28,17 @@ npm run test
 npm run build
 
 # Scripts
-# e.g. deploy-commands
-npm run script script-name
+#   Update commands
+npm run script deploy-commands
+
+#   Update schema
+npx drizzle-kit generate
+
+#   Migrate database
+npx drizzle-kit migrate
+
+#   Drizzle studio
+npx drizzle-kit studio
 ```
 
 #### 2.2.1. Scripts

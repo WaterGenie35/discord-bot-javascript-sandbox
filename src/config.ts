@@ -5,7 +5,9 @@ dotenv.config();
 
 const requiredVariables = [
     'DISCORD_BOT_TOKEN',
-    'DISCORD_APPLICATION_ID'
+    'DISCORD_APPLICATION_ID',
+    'DISCORD_DEFAULT_COMMAND_COOLDOWN',
+    'DRIZZLE_DB_FILE_NAME'
 ];
 
 const missingVariables = requiredVariables.filter(variable => process.env[variable] === undefined);
