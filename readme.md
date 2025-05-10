@@ -11,41 +11,41 @@
 ### 2.1. Run
 
 ```bash
-npm run start
-npm run stop
+npm run start-pm2
+npm run stop-pm2
 ```
 
 ### 2.2. Development
 
+#### 2.2.1. Outline
+
+`BotClient` extends `discord.js`'s `Client` and contains:
+
+ - App command-related properties
+ - Drizzle db client
+
+ The client dynamically loads discord commands and events from their respective directories.
+
+#### 2.2.2. Commands/Workflow
+
+##### Main Development Loop
 ```bash
-# Watch
-npm run dev
-
-# Test
-npm run test
-
-# Build
 npm run build
+npm run test
+npm run start
+```
 
-# Scripts
-#   Update commands
-npm run script deploy-commands  # then refresh discord
-
-#   Update schema
+##### Working with Database
+```bash
+npm run clear-db
 npx drizzle-kit generate
-
-#   Migrate database
 npx drizzle-kit migrate
-
-#   Drizzle studio
 npx drizzle-kit studio
 ```
 
-#### 2.2.1. Scripts
-
+##### Working with Discord
 ```bash
-# Register new commands and update existing ones
-npm run script deploy-commands
+npm run script deploy-commands  # then refresh discord
 ```
 
 
@@ -54,3 +54,4 @@ npm run script deploy-commands
 - [Discord Developers Documentation](https://discord.com/developers/docs/intro)
 - [Discord.js](https://discord.js.org/)
 - [Drizzle](https://orm.drizzle.team/)
+- [Express](https://expressjs.com/)
