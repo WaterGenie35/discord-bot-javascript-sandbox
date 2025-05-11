@@ -7,7 +7,8 @@ const requiredVariables = [
     'DISCORD_BOT_TOKEN',
     'DISCORD_APPLICATION_ID',
     'DISCORD_DEFAULT_COMMAND_COOLDOWN',
-    'DRIZZLE_DB_FILE_NAME'
+    'DRIZZLE_DB_FILE_NAME',
+    'EXPRESS_PORT'
 ];
 
 const missingVariables = requiredVariables.filter(variable => process.env[variable] === undefined);
